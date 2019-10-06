@@ -1,0 +1,1 @@
+export const idGenerate = () => `f${(+new Date).toString(16)}`;

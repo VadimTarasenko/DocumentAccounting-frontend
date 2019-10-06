@@ -1,0 +1,38 @@
+.pagination {
+  display: flex;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    margin-right: 2px;
+    background: rgba(#FF9A40, .2);
+    color: #FF9A40;
+    border: none;
+
+    &:hover {
+      background: rgba(#FF9A40, .3);
+    }
+
+    &_active {
+      background: #FF9A40;
+      color: black;
+      cursor: default;
+
+      &:hover {
+        background: #FF9A40;
+      }
+    }
+  }
+
+  &__arrow {
+    &_right {
+      img {
+        transform: scale(-1);
+      }
+    }
+  }
+}

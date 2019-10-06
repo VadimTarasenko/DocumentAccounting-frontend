@@ -1,0 +1,37 @@
+.documentPage {
+  padding: 120px 0 80px 0;
+
+  &__infoRow {
+    display: flex;
+    font-size: 16px;
+    margin-bottom: 7px;
+  }
+
+  &__name {
+    font-weight: 500;
+    color: rgba(0,0,0,.8);
+  }
+
+  &__value {
+    margin-left: 10px;
+    color: rgba(0,0,0,.8);
+  }
+
+  &__actions {
+    margin-top: 35px;
+
+    button {
+      margin-right: 10px;
+    }
+  }
+
+  &__comments {
+    // margin-top: 15px;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    column-gap: 20px;
+  }
+}
