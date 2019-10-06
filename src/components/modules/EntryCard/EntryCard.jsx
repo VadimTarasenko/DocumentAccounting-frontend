@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Tabs, Tab } from '@material-ui/core';
 
 import isDataValid from 'utilities/validation';
 import { Button, Input } from 'components/reusable';
+import { apiUrl } from 'utilities/api';
 
 
 function EntryCard(props) {
@@ -10,8 +12,8 @@ function EntryCard(props) {
   const [activeTab, setActiveTab] = useState(0);
   const [logInData, setLogInData] = useState({ email: '', password: '' });
   const [logInDataValid, setLogInDataValid] = useState({ email: true, password: true });
-  const [registrationData, setRegistrationData] = useState({ name: '', email: '', password: '' })
-  const [registrationDataValid, setRegistrationDataValid] = useState({ name: true, email: true, password: true });
+  const [registrationData, setRegistrationData] = useState({ fullname: '', email: '', password: '' })
+  const [registrationDataValid, setRegistrationDataValid] = useState({ fullname: true, email: true, password: true });
 
   const handleChangeTab = (_, value) => {
     setActiveTab(value);
@@ -26,10 +28,11 @@ function EntryCard(props) {
   }
 
   const handleRegistrationDataChange = (key) => (e) => {
+
     setRegistrationData({ ...registrationData, [key]: e.target.value });
 
     if (!registrationData[key]) {
-      setRegistrationDataValid({ ...registrationData, [key]: true });
+      setRegistrationDataValid({ ...registrationDataValid, [key]: true });
     }
   }
 
@@ -54,11 +57,11 @@ function EntryCard(props) {
     e.preventDefault();
   }
 
-  const handleRegistration = (fullName, email, password) => (e) => {
+  const handleRegistration = (fullname, email, password) => (e) => {
     const { addNotification } = props;
 
-    if (!fullName) {
-      registrationDataValid.name = false;
+    if (!fullname) {
+      registrationDataValid.fullname = false;
       setTimeout(() => addNotification('Ви не ввели ім\'я'), 200);
     }
 
@@ -70,6 +73,22 @@ function EntryCard(props) {
     if (!password) {
       registrationDataValid.password = false;
       setTimeout(() => addNotification('Ви не ввели пароль'), 600);
+    }
+
+    if (registrationDataValid.fullname && registrationDataValid.email && registrationDataValid.password) {
+      axios.post(`${apiUrl}/user/signup`, {
+        fullname,
+        email,
+        password
+      }).then(({ data }) => {
+        setLogInData({
+          email: data.email,
+          password: data.password
+        });
+        setActiveTab(0);
+      }).catch(error => {
+        console.log(error);
+      });
     }
 
     setRegistrationDataValid({ ...registrationDataValid }); // update render
@@ -110,6 +129,7 @@ function EntryCard(props) {
                   value={logInData.password}
                   onChange={handleLogInDataChange('password')}
                   error={!logInDataValid.password}
+                  type='password'
                 />
               </div>
             </div>
@@ -121,16 +141,16 @@ function EntryCard(props) {
         {activeTab === 1 && (
           <form
             className='entry-card__content'
-            onSubmit={handleRegistration(registrationData.name, registrationData.email, registrationData.password)}
+            onSubmit={handleRegistration(registrationData.fullname, registrationData.email, registrationData.password)}
           >
             <div className='entry-card__title'>Зареєструватися в Live Docs</div>
             <div className='entry-card__data'>
               <div className='entry-card__input'>
                 <Input
                   label='ФІО'
-                  value={registrationData.name}
-                  onChange={handleRegistrationDataChange('name')}
-                  error={!registrationDataValid.name}
+                  value={registrationData.fullname}
+                  onChange={handleRegistrationDataChange('fullname')}
+                  error={!registrationDataValid.fullname}
                 />
               </div>
               <div className='entry-card__input'>
@@ -147,6 +167,7 @@ function EntryCard(props) {
                   value={registrationData.password}
                   onChange={handleRegistrationDataChange('password')}
                   error={!registrationDataValid.password}
+                  type='password'
                 />
               </div>
             </div>
