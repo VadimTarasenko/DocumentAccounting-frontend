@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Tabs, Tab } from '@material-ui/core';
 
-import isDataValid from 'utilities/validation';
 import { Button, Input } from 'components/reusable';
 import { apiUrl } from 'utilities/api';
+import isDataValid from 'utilities/validation';
 
 
 function EntryCard(props) {
@@ -89,9 +89,10 @@ function EntryCard(props) {
       }).catch(error => {
         console.log(error);
       });
+    } else {
+      setRegistrationDataValid({ ...registrationDataValid }); // update render
     }
 
-    setRegistrationDataValid({ ...registrationDataValid }); // update render
     e.preventDefault();
   }
 
