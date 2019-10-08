@@ -2,9 +2,9 @@ import React from 'react';
 
 import AddIcon from 'assets/add.png';
 
-const NewCardButton = () => (
-    <button className='newCardButton'>
-        <img src={AddIcon} alt=""/>
+const NewCardButton = ({ onClick }) => (
+    <button className='newCardButton' onClick={onClick}>
+        <img src={AddIcon} alt="" />
     </button>
 );
 

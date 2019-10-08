@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
 import { ContentWrapper, DocumentCard, Loader, NewCardButton } from 'components/reusable';
-import { Header } from 'components/modules';
+import { Header, AddDocument } from 'components/modules';
 
 function Main(props) {
 
+  const [isAddDocumentModalOpen, setIsAddDocumentModalOpen] = useState(false);
   const [isDataLoaded] = useState(true);
 
   const { documents } = props.documents;
@@ -13,6 +14,10 @@ function Main(props) {
   useEffect(() => {
     getDocuments();
   }, [getDocuments]);
+
+  const toggleAddModal = () => {
+    setIsAddDocumentModalOpen(!isAddDocumentModalOpen);
+  }
 
   return (
     <div className='main-page'>
@@ -26,7 +31,7 @@ function Main(props) {
               {documents.map((document, i) =>
                 <DocumentCard {...document} key={i} />
               )}
-              <NewCardButton />
+              <NewCardButton onClick={toggleAddModal} />
             </div>
           </div>
         </section>
@@ -38,15 +43,15 @@ function Main(props) {
                 <DocumentCard {...document} key={i} />
               )}
             </div>
-            {/* <div className='main-page__pagination'>
-              <Pagination />
-            </div> */}
           </div>
         </section>
         <div className='main-page__loader'>
           <Loader isOpen={!isDataLoaded} />
         </div>
       </ContentWrapper>
+      {isAddDocumentModalOpen && (
+        <AddDocument handleClose={toggleAddModal} />
+      )}
     </div >
   )
 }

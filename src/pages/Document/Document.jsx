@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { ContentWrapper, Button } from 'components/reusable';
-import { Header, Comments } from 'components/modules';
-// import { getSearchValueByKey } from 'utilities/location';
+import { Header, Comments, AddDocument } from 'components/modules';
+import ArrowIcon from 'assets/backArrow.svg';
 
 function Document() {
-
-  useEffect(() => {
-    // const documentId = getSearchValueByKey('id');
-  }, []);
 
 
   return (
     <div className='documentPage'>
       <Header />
       <ContentWrapper>
-        <h1>Документ "Document1.pdf"</h1>
+        <div className='documentPage__titleBlock'>
+          <h1>Документ "Document1.pdf"</h1>
+          <Link className='documentPage__backLink' to='/main'><img src={ArrowIcon} alt="arrow" /> На главную</Link>
+        </div>
         <div className='documentPage__content'>
           <section className='section'>
             <h2 className='section__name'>Информация</h2>
@@ -47,7 +47,6 @@ function Document() {
             </div>
           </section>
         </div>
-
       </ContentWrapper>
     </div>
   )

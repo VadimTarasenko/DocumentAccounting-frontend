@@ -8,8 +8,8 @@ function Header() {
       <ContentWrapper className='header__content'>
         <div className='header__logo'></div>
         <div className='header__user'>
-          <div className='header__userAvatar'></div>
-          <div className='header__userFullName'>Vadim Tarasenko</div>
+          <div className='header__userName'>Vadim Tarasenko</div>
+          <div className='header__userAvatar'><img src="" alt=""/></div>
         </div>
       </ContentWrapper>
     </div>
