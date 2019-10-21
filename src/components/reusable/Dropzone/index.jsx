@@ -1,9 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Dropzone = ({ files }) => {
 
+  useEffect(() => {
+
+    // window.addEventListener('dragenter', (e) => {
+    //   if (!e.target.classList.contains('dropzone')) {
+    //     e.preventDefault();
+    //     e.dataTransfer.effectAllowed = "none";
+    //     e.dataTransfer.dropEffect = "none";
+    //   }
+    // }, false);
+
+    // window.addEventListener('dragover', (e) => {
+    //   if (!e.target.classList.contains('dropzone')) {
+    //     e.preventDefault();
+    //     e.dataTransfer.effectAllowed = "none";
+    //     e.dataTransfer.dropEffect = "none";
+    //   }
+    // });
+
+    // window.addEventListener('drop', (e) => {
+    //   // console.log(e.target)
+    //   e.preventDefault();
+    //   e.dataTransfer.effectAllowed = "none";
+    //   e.dataTransfer.dropEffect = "none";
+    // })
+  }, []);
+
   return (
-    <div className='dropzone'>
+    <label
+      className='dropzone'
+    >
       {files.lenght ? (
         <div></div>
       ) : (
@@ -11,7 +39,8 @@ const Dropzone = ({ files }) => {
             Перетягніть файл
           </div>
         )}
-    </div>
+      <input type="file" />
+    </label>
   );
 }
 

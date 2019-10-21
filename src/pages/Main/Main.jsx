@@ -5,7 +5,7 @@ import { Header, AddDocument } from 'components/modules';
 
 function Main(props) {
 
-  const [isAddDocumentModalOpen, setIsAddDocumentModalOpen] = useState(true);
+  const [isAddDocumentModalOpen, setIsAddDocumentModalOpen] = useState(false);
   const [isDataLoaded] = useState(true);
 
   const { documents } = props.documents;

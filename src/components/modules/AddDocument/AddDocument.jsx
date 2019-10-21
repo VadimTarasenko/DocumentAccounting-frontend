@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Modal, Dropzone } from 'components/reusable';
+import { Modal, Dropzone, Button } from 'components/reusable';
 
 function AddDocument({ handleClose }) {
   return (
@@ -14,8 +14,8 @@ function AddDocument({ handleClose }) {
           <div className='addDocument__dropzone'>
             <Dropzone files={[]} />
           </div>
-          <div className=''>
-
+          <div className='addDocument__actions'>
+            <Button color='primary'>Зберегти</Button>
           </div>
         </div>
       </div>
