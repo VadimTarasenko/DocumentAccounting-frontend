@@ -5,8 +5,8 @@ import { Entry, Main, Document } from 'pages';
 
 const Root = () => (
   <Switch>
-    <Route path='/main' component={Main} />
     <Route path='/entry' component={Entry} />
+    <Route path='/main' component={Main} />
     <Route path='/document' component={Document} />
   </Switch>
 )

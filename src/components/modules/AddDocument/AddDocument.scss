@@ -1,4 +1,30 @@
 .addDocument {
+  display: flex;
+  flex-direction: column;
   width: 400px;
   height: 300px;
+  padding: 20px;
+
+  // &__header {
+
+  // }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__dropzone {
+    margin-top: 20px;
+    height: 200px;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  &__description {
+    font-size: 12px;
+    margin-top: 5px;
+  }
 }
